@@ -1,7 +1,7 @@
 # Authenticate Me, Part 3: Deploying Your Rails + React App To Heroku
 
-You will be using [Heroku] to deploy the live, production version of your Rails
-+ React app.
+You will be using [Heroku] to deploy the live, production version of your
+Rails-React app.
 
 ## Heroku: An Overview
 
@@ -115,18 +115,22 @@ default values. Inside the file, remove the "main" key/value pair. You could
 also adjust the "name" and/or add a "description". What this file really needs
 to do, however, is establish 1) engine versions and 2) scripts.
 
-First, under a key of `"engines"`, specify the `node` and `npm` versions that
-Heroku should use when running your app, like this:
+First, under a key of `"engines"`, specify the `node` version that Heroku should
+use when running your app, either the exact version (e.g., `16.13.2`), a minor
+range (e.g., `16.13`), or a major range (e.g., `16.x`):
 
 ```json
 "engines": {
-  "node": "16.13.2",
-  "npm": "8.1.2"
+  "node": "16.x"
 },
 ```
 
-To find out which versions you are currently using, run the command with a `-v`
-flag in the terminal, e.g., `npm -v`.
+> **Note:** Since Node often releases security patches on all major versions,
+> Heroku recommends specifying a major version range for Node, which will
+> install the latest patch upgrades.
+
+To find out which version you are using locally, run `node -v` in the
+terminal.
 
 Second, under `"scripts"`, replace `"test"` with the following `"build"` script:
 
@@ -168,9 +172,9 @@ the changes, the files will simply turn the desired grey.
 The last configuration task is to create a __Procfile__ (no extension).
 [__Procfile__s][procfiles] list the commands to run for various process types.
 Each line has the form `<process type>: <command>`. For example, you can specify
-your app's web server like this: `web: rails server -p $PORT`. Heroku would
-likely guess that command for a Rails app, but it's always best to specify
-explicitly, especially since you have a hybrid app.
+your app's web server like this: `web: rails server -p $PORT -e $RAILS_ENV`.
+Heroku would likely guess that command for a Rails app, but it's always best to
+specify explicitly, especially since you have a hybrid app.
 
 More importantly, a __Procfile__ gives you the opportunity to identify commands
 to run before deploying a new release. In this case, it will prove convenient to
@@ -298,7 +302,7 @@ environment on Heroku's computers, just start the command with `heroku run`.
 
   This will open your production Rails console using the command from your
   __Procfile__. (You could also use `heroku run rails c`.) Inside the console,
-  run `User.all` and you should see the users you seeded to your production
+  run `User.all`. You should see the users you seeded to your production
   database!
 
 ### Step 6: See your site!
