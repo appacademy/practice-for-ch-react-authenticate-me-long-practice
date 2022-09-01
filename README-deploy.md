@@ -59,19 +59,20 @@ and adjust your __routes.rb__ file.
 
 Starting with the controller, create a new __static_pages_controller.rb__ file
 inside your __app/controllers__ folder. All this controller needs to do is
-`render file: 'public/index.html'`. In fact, you could have just created a
-`frontend_index` action in your `ApplicationController` to handle this case,
-except that your `ApplicationController` inherits from `ActionController::API`,
-and `ActionController::API` **cannot** serve up html pages. Making a new
-`StaticPagesController` that inherits from `ActionController::Base` enables you
-to keep all of your other controllers API-specific (i.e., **fast and lean**).
+`render file: Rails.root.join('public', 'index.html')`. In fact, you could have
+just created a `frontend_index` action in your `ApplicationController` to handle
+this case, except that your `ApplicationController` inherits from
+`ActionController::API`, and `ActionController::API` **cannot** serve up html
+pages. Making a new `StaticPagesController` that inherits from
+`ActionController::Base` enables you to keep all of your other controllers
+API-specific (i.e., **fast and lean**).
 
 ```rb
 # app/controllers/static_pages_controller.rb
 
 class StaticPagesController < ActionController::Base
   def frontend_index
-    render file: 'public/index.html'
+    render file: Rails.root.join('public', 'index.html')
   end
 end
 ```
