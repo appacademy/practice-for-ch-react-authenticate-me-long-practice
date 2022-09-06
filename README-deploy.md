@@ -77,7 +77,8 @@ class StaticPagesController < ActionController::Base
 end
 ```
 
-In __config/routes.rb__, add the following catch-all route:
+In __config/routes.rb__, add the following catch-all route **after all of your
+other routes**:
 
 ```rb
 #config/routes.rb
