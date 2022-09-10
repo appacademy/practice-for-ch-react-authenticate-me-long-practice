@@ -409,5 +409,5 @@ Next: On to Phase 3 (just as soon as you **commit your code**)!
 [session]: https://guides.rubyonrails.org/v7.0.3/action_controller_overview.html#session
 [slice]: https://api.rubyonrails.org/v7.0.3/classes/ActiveRecord/Core.html#method-i-slice
 [strong params]: https://api.rubyonrails.org/v7.0.3/classes/ActionController/StrongParameters.html
-[`wrap-parameters`]: https://api.rubyonrails.org/v7.0.3/classes/ActionController/ParamsWrapper.html
+[`wrap_parameters`]: https://api.rubyonrails.org/v7.0.3/classes/ActionController/ParamsWrapper.html
 [`localhost:5000`]: http://localhost:5000
